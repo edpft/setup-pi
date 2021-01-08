@@ -20,3 +20,12 @@ sudo apt-get install ufw \
 && sudo allow ssh \
 && sudo ufw limit ssh/tcp \
 && sudo ufw enable
+
+# Set up git
+git config --global user.email "edwardpaultaylor@gmail.com" \
+&& git config --global user.name "Ed Fawcett-Taylor"
+
+# SSH
+ssh-keygen -t ed25519 -C "edwardpaultaylor@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add
