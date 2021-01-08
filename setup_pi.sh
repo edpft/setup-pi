@@ -21,11 +21,20 @@ sudo apt-get install ufw \
 && sudo ufw limit ssh/tcp \
 && sudo ufw enable
 
-# Set up git
-git config --global user.email "edwardpaultaylor@gmail.com" \
-&& git config --global user.name "Ed Fawcett-Taylor"
-
 # SSH
 ssh-keygen -t ed25519 -C "edwardpaultaylor@gmail.com"
 eval "$(ssh-agent -s)"
 ssh-add
+
+# Set up git
+git config --global user.email "edwardpaultaylor@gmail.com" \
+&& git config --global user.name "Ed Fawcett-Taylor"
+
+echo "# setup-pi" >> README.md \
+&& git init \
+&& git add . \
+&& git commit -m "initial commit" \
+&& git branch -M main \
+&& git remote add origin git@github.com:edpft/setup-pi.git \
+&& git push -u origin main
+                
