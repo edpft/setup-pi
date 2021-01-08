@@ -37,4 +37,34 @@ echo "# setup-pi" >> README.md \
 && git branch -M main \
 && git remote add origin git@github.com:edpft/setup-pi.git \
 && git push -u origin main
-                
+
+# Install Python dependencies
+sudo apt-get update \
+&& sudo apt-get install -y --no-install-recommends make \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libncurses5-dev \
+    xz-utils \
+    tk-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libffi-dev \
+    liblzma-dev
+
+# Set up pyenv
+curl https://pyenv.run | bash \
+&& echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc \
+&& echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc \
+&& echo 'eval "$(pyenv init -)"' >> ~/.bashrc \
+&& echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc \
+&& exec $SHELL
+
+# Use pyenv to install Python 3.9.1
+pyenv install 3.9.1
